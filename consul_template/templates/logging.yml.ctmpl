@@ -15,8 +15,8 @@ appender:
       conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
   socketappender:
    type: org.apache.log4j.net.SocketAppender
-   port: 9500
-   remoteHost: logstash
+   {{ with service "logstash-9500" }}{{ with index . 0 }}port: {{.Port}}
+   remoteHost: {{.Address}}{{end}}{{end}}
    layout:
       type: pattern
       conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
