@@ -1,0 +1,2 @@
+[program:balance]
+command=/usr/bin/balance -f -d 9500 {{ range service "logstash-9500" }}{{.Address}}:{{.Port}} {{end}}
