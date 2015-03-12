@@ -26,6 +26,6 @@ ENV PATH /opt/elasticsearch/bin:$PATH
 
 USER root
 
-VOLUME /otp/elasticsearch/data
+VOLUME /opt/elasticsearch/data
 
 EXPOSE 9200 9300
