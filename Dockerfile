@@ -13,7 +13,7 @@ RUN \
   rm -rf /var/cache/oracle-jdk8-installer && \
   wget -O elasticsearch.tar.gz https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.3.tar.gz && \
   mkdir -p /opt/elasticsearch && tar xzf elasticsearch.tar.gz -C /opt/elasticsearch --strip-components=1 && \
-  rm elasticsearch.tar.gz && chown -R elasticsearch /opt/elasticsearch
+  rm elasticsearch.tar.gz && mkdir /opt/elasticsearch/data && chown -R elasticsearch /opt/elasticsearch
 
 COPY logging.yml /opt/elasticsearch/config/
 COPY consul_template/conf.d /opt/consul_template/conf.d
@@ -23,9 +23,8 @@ COPY supervisord.conf /etc/supervisor/conf.d/elasticsearch.conf
 USER elasticsearch
 
 ENV PATH /opt/elasticsearch/bin:$PATH
+VOLUME /opt/elasticsearch/data
 
 USER root
-
-VOLUME /opt/elasticsearch/data
 
 EXPOSE 9200 9300
