@@ -1,4 +1,4 @@
-FROM fgaudin/base:2
+FROM fgaudin/base:3
 MAINTAINER Francois Gaudin <francois@presencelearning.com>
 
 RUN groupadd elasticsearch -g 109200 && useradd elasticsearch -u 109200 -d /opt/elasticsearch -s /usr/sbin/nologin -g 109200
